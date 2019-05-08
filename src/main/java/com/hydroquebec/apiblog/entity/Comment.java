@@ -13,6 +13,11 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "comment")
 public class Comment {
@@ -28,16 +33,16 @@ public class Comment {
 	@Column(name = "author")
 	private String author;
 
-	@Temporal(TemporalType.TIMESTAMP)
+	@CreationTimestamp
 	@Column(name = "created_at")
 	private LocalDateTime createdAt;
 
-	@Temporal(TemporalType.TIMESTAMP)
+	@UpdateTimestamp
 	@Column(name = "updated_at")
 	private LocalDateTime updatedAt;
 
+	@JsonIgnore
 	@ManyToOne(fetch = FetchType.EAGER)
-	@Column(name = "post_id")
 	private Post post;
 
 	public Comment() {

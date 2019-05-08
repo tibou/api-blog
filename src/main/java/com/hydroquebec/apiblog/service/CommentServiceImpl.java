@@ -5,9 +5,11 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.hydroquebec.apiblog.dao.CommentRepository;
 import com.hydroquebec.apiblog.entity.Comment;
+import com.hydroquebec.apiblog.exception.CommentNotFoundException;
 
 @Service
 public class CommentServiceImpl implements CommentService {
@@ -16,12 +18,14 @@ public class CommentServiceImpl implements CommentService {
 	private CommentRepository commentRepository;
 
 	@Override
+	@Transactional
 	public List<Comment> findAll() {
 		return commentRepository.findAll();
 	}
 
 	@Override
-	public Comment findById(long id) {
+	@Transactional
+	public Comment findById(int id) {
 		Optional<Comment> result = commentRepository.findById(id);
 
 		Comment comment = null;
@@ -29,19 +33,33 @@ public class CommentServiceImpl implements CommentService {
 		if (result.isPresent()) {
 			comment = result.get();
 		} else {
-			throw new RuntimeException("Did not find comment id - " + id);
+			throw new CommentNotFoundException("comment with id "+ id + " not found");
 		}
 		return comment;
 	}
 
 	@Override
+	@Transactional
 	public Comment save(Comment comment) {
 		return commentRepository.save(comment);
 	}
 
 	@Override
-	public void deleteById(long id) {
+	@Transactional
+	public void deleteById(int id) {
 		commentRepository.deleteById(id);
+	}
+
+	@Override
+	@Transactional
+	public List<Comment> getAllCommentsForGivenPost(int postId) {
+		return commentRepository.findByPostId(postId);
+	}
+
+	@Override
+	@Transactional
+	public Comment getCommentForGivenPost(int postId, int commentId) {
+		return null;// commentRepository.findByIdAndPostId(commentId, postId);
 	}
 
 }
