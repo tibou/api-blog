@@ -8,10 +8,14 @@ public interface CommentService {
 
 	public List<Comment> findAll();
 
-	public Comment findById(long id);
+	public Comment findById(int id);
 
 	public Comment save(Comment comment);
 
-	public void deleteById(long id);
+	public void deleteById(int id);
+
+	public List<Comment> getAllCommentsForGivenPost(int postId);
+
+	public Comment getCommentForGivenPost(int postId, int commentId);
 
 }

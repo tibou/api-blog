@@ -15,6 +15,11 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "post")
 public class Post {
@@ -33,14 +38,15 @@ public class Post {
 	@Column(name = "author")
 	private String author;
 
-	@Temporal(TemporalType.TIMESTAMP)
+	@CreationTimestamp
 	@Column(name = "created_at")
 	private LocalDateTime createdAt;
 
-	@Temporal(TemporalType.TIMESTAMP)
+	@UpdateTimestamp
 	@Column(name = "updated_at")
 	private LocalDateTime updatedAt;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "post", fetch = FetchType.LAZY)
 	private List<Comment> comments = new ArrayList<>();
 

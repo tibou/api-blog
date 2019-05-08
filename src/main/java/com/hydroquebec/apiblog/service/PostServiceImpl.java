@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.hydroquebec.apiblog.dao.PostRepository;
 import com.hydroquebec.apiblog.entity.Post;
@@ -16,12 +17,14 @@ public class PostServiceImpl implements PostService {
 	private PostRepository postRepository;
 
 	@Override
+	@Transactional
 	public List<Post> findAll() {
 		return postRepository.findAll();
 	}
 
 	@Override
-	public Post findById(long id) {
+	@Transactional
+	public Post findById(int id) {
 		Optional<Post> result = postRepository.findById(id);
 
 		Post post = null;
@@ -35,13 +38,15 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
+	@Transactional
 	public Post save(Post post) {
 		return postRepository.save(post);
 
 	}
 
 	@Override
-	public void deleteById(long id) {
+	@Transactional
+	public void deleteById(int id) {
 		postRepository.deleteById(id);
 	}
 
