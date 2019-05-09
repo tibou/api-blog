@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+	<title>Espace de gestion du blog</title>
+</head>
+
+<body>
+
+<div class="container">
+
+	<h3>Espace de gestion du blog</h3>
+	<hr>
+	
+	<!-- Add a button -->
+	<a th:href="@{/posts/showFormForAdd}"
+		class="btn btn-primary btn-sm mb-3">
+		Ajouter un post
+	</a>
+	
+	
+	<table class="table table-bordered table-striped">
+		<thead class="thead-dark">
+			<tr>
+				<th>Titre</th>
+<!-- 				<th>Contenu</th> -->
+				<th>Auteur</th>
+				<th>Date création</th>
+				<th>Date mise à jour</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		
+		<tbody>
+			<tr th:each="tempPost : ${posts}">
+			
+				<td th:text="${tempPost.title}" />	
+<!-- 				<td th:text="${tempPost.body}" />	 -->
+				<td th:text="${tempPost.author}" />	
+				<td th:text="${tempPost.createdAt}" />
+				<td th:text="${tempPost.updatedAt}" />
+				
+				<td>
+					<a th:href="@{/posts/showFormForUpdate(postId=${tempPost.id})}"
+					   class="btn btn-info btn-sm">
+						Modifier
+					</a>
+					
+					<a th:href="@{/posts/detail(postId=${tempPost.id})}"
+					   class="btn btn-success btn-sm">
+						Afficher
+					</a>
+					
+					<a th:href="@{/posts/delete(postId=${tempPost.id})}"
+					   class="btn btn-danger btn-sm"
+					   onclick="if (!(confirm('Êtes-vous sûr de vouloir supprimer ce post?'))) return false">
+						Suprimer
+					</a>
+					
+					
+				</td>
+				
+				
+			</tr>
+		</tbody>		
+	</table>
+	
+</div>
+	
+</body>
+</html>
+
+
+
