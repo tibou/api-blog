@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -30,6 +29,16 @@ public class PostController {
 		model.addAttribute("posts", posts);
 
 		return "posts/list-posts";
+	}
+	
+	@GetMapping("/detail")
+	public String showDetail(@RequestParam("postId") int postId, Model model) {
+
+		Post post = postService.findById(postId);
+
+		model.addAttribute("post", post);
+
+		return "posts/post-detail";
 	}
 
 	@GetMapping("/showFormForAdd")
@@ -61,7 +70,7 @@ public class PostController {
 	}
 	
 	
-	@DeleteMapping("/delete")
+	@GetMapping("/delete")
 	public String deletePost(@RequestParam("postId") int postId) {
 		
 		postService.deleteById(postId);
