@@ -77,7 +77,7 @@ Comment with id : 5 deleted
 L'application offre un espace de gestion des posts. Typiquement, les opérations CRUD y sont implémentées.
 L'espace est accessible via l'URL de l'application :  http://server_ip:8080/api-blog/
 
-# Amméliorations possibles
+# Améliorations possibles
 Implémentation de la sécurité pour l'authentification et l'autorisation
 
 Implémentation du HATEOAS pour l'api
