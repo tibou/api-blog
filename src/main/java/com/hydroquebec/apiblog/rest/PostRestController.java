@@ -1,7 +1,6 @@
 package com.hydroquebec.apiblog.rest;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,10 +10,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.hydroquebec.apiblog.entity.Comment;
 import com.hydroquebec.apiblog.entity.Post;
-import com.hydroquebec.apiblog.exception.CommentNotFoundException;
 import com.hydroquebec.apiblog.service.CommentService;
 import com.hydroquebec.apiblog.service.PostService;
 
@@ -30,7 +27,30 @@ public class PostRestController {
 
 	@GetMapping("/{postId}/comments")
 	public List<Comment> getCommentsForPost(@PathVariable int postId) {
-		return commentService.getAllCommentsForGivenPost(postId);
+
+		List<Comment> allComments = commentService.getAllCommentsForGivenPost(postId);
+		
+		return allComments;
+
+//		List<CommentResource> collection = allComments.stream().map(CommentResource::new).collect(Collectors.toList());
+//		Resources<CommentResource> resources = new Resources<>(collection);
+//
+//		return ResponseEntity.ok(resources);
+
+//		for (Comment comment : allComments) {
+//			int commentId = comment.getId();
+//			Link selfLink = ConlinkTo(PostRestController.class).slash(commentId).withSelfRel();
+//			comment.add(selfLink);
+////	        if (orderService.getAllOrdersForCustomer(customerId).size() > 0) {
+////	            Link ordersLink = linkTo(methodOn(CustomerController.class)
+////	              .getOrdersForCustomer(customerId)).withRel("allOrders");
+////	            customer.add(ordersLink);
+////	        }
+//		}
+//
+//		Link link = linkTo(PostRestController.class).withSelfRel();
+//		Resources<Comment> result = new Resources<Comment>(allComments, link);
+//		return result;
 	}
 
 	@PostMapping("/{postId}/comments")
