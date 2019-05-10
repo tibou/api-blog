@@ -26,6 +26,7 @@ Quatre formes de resources sont offertes à travers les URLs suivantes:
 ## GET à http://server_ip:8080/api-blog/post/{id}/comments: renvoie la liste des commentaires du post dont l'id est fourni dans l'URL
 
 [
+
     {
         "id": 1,
         "message": "juste un commentaire",
@@ -40,6 +41,7 @@ Quatre formes de resources sont offertes à travers les URLs suivantes:
         "createdAt": "2019-05-08T15:23:42",
         "updatedAt": "2019-05-08T14:26:59"
     }
+    
 ]
 
 ## POST à http://server_ip:8080/api-blog/post/{id}/comments: création d’un nouveau commentaire pour le post dont l'id est fourni dans l'URL
