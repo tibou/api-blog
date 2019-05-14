@@ -29,28 +29,8 @@ public class PostRestController {
 	public List<Comment> getCommentsForPost(@PathVariable int postId) {
 
 		List<Comment> allComments = commentService.getAllCommentsForGivenPost(postId);
-		
+
 		return allComments;
-
-//		List<CommentResource> collection = allComments.stream().map(CommentResource::new).collect(Collectors.toList());
-//		Resources<CommentResource> resources = new Resources<>(collection);
-//
-//		return ResponseEntity.ok(resources);
-
-//		for (Comment comment : allComments) {
-//			int commentId = comment.getId();
-//			Link selfLink = ConlinkTo(PostRestController.class).slash(commentId).withSelfRel();
-//			comment.add(selfLink);
-////	        if (orderService.getAllOrdersForCustomer(customerId).size() > 0) {
-////	            Link ordersLink = linkTo(methodOn(CustomerController.class)
-////	              .getOrdersForCustomer(customerId)).withRel("allOrders");
-////	            customer.add(ordersLink);
-////	        }
-//		}
-//
-//		Link link = linkTo(PostRestController.class).withSelfRel();
-//		Resources<Comment> result = new Resources<Comment>(allComments, link);
-//		return result;
 	}
 
 	@PostMapping("/{postId}/comments")

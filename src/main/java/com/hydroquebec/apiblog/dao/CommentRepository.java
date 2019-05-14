@@ -10,5 +10,4 @@ public interface CommentRepository extends JpaRepository<Comment, Integer> {
 
 	public List<Comment> findByPostId(Integer postId);
 
-	public Comment findByIdAndPostId(Integer commentId, Integer postId);
 }

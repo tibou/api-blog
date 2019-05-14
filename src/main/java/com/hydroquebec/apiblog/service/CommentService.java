@@ -15,7 +15,4 @@ public interface CommentService {
 	public void deleteById(int id);
 
 	public List<Comment> getAllCommentsForGivenPost(int postId);
-
-	public Comment getCommentForGivenPost(int postId, int commentId);
-
 }
