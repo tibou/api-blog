@@ -33,7 +33,7 @@ public class CommentServiceImpl implements CommentService {
 		if (result.isPresent()) {
 			comment = result.get();
 		} else {
-			throw new CommentNotFoundException("comment with id "+ id + " not found");
+			throw new CommentNotFoundException("comment with id " + id + " not found");
 		}
 		return comment;
 	}
@@ -54,12 +54,6 @@ public class CommentServiceImpl implements CommentService {
 	@Transactional
 	public List<Comment> getAllCommentsForGivenPost(int postId) {
 		return commentRepository.findByPostId(postId);
-	}
-
-	@Override
-	@Transactional
-	public Comment getCommentForGivenPost(int postId, int commentId) {
-		return null;// commentRepository.findByIdAndPostId(commentId, postId);
 	}
 
 }
