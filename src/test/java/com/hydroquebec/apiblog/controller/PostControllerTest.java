@@ -16,7 +16,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-import com.hydroquebec.apiblog.entity.Comment;
 import com.hydroquebec.apiblog.entity.Post;
 import com.hydroquebec.apiblog.service.PostService;
 
