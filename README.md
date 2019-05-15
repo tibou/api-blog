@@ -1,12 +1,12 @@
 # api-blog
-C'est une application web développée avec les technologies java et spring. Elle s'exécute dans un conteneur tomcat au port 8080. Elle offre une API pour servir un blog et un espace de gestion des posts. J'ai essentiellement utilisé dans ce projet Spring Boot, Spring MVC, Hibernate, Spring Data JPA et Thymeleaf.
+C'est une application web développée avec les technologies java et spring. Elle s'exécute dans un conteneur tomcat au port 8080. Elle offre une API pour servir un blog et un espace de gestion des posts. J'ai essentiellement utilisé dans ce projet Spring Boot, Spring MVC, Hibernate, Spring Data JPA et Thymeleaf. Par ailleurs j'ai fait preuve de beaucoup de simplicité.
 
-# Requirements
+# Besoins
 JDK 1.8
 
 Mariadb 10.1
 
-# Deployment
+# Deploiement
   ## Création de la base de bonnées
   
   L'application communique avec une base de données mysql dont les informations sont les suivantes:<br>
