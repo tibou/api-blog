@@ -1,6 +1,9 @@
 package com.hydroquebec.apiblog.controller;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -12,6 +15,8 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
+import com.hydroquebec.apiblog.entity.Comment;
 import com.hydroquebec.apiblog.entity.Post;
 import com.hydroquebec.apiblog.service.PostService;
 
@@ -28,6 +33,19 @@ public class PostControllerTest {
 	@Test
 	public void testListPosts() throws Exception {
 
+		// given
+		Post post1 = new Post("Ceci est le titre du premier post", "Ceci est le contenu du premier post", "auteur1",
+				LocalDateTime.now(), LocalDateTime.now());
+		Post post2 = new Post("Ceci est le titre du deuxième post", "Ceci est le contenu du deuxième post", "auteur2",
+				LocalDateTime.now(), LocalDateTime.now());
+		List<Post> posts = new ArrayList<>();
+		posts.add(post1);
+		posts.add(post2);
+
+		// when
+		Mockito.when(postService.findAll()).thenReturn(posts);
+
+		// then
 		mockMvc.perform(get("/posts/list")).andExpect(status().isOk()).andExpect(model().attributeExists("posts"))
 				.andExpect(view().name("posts/list-posts"));
 
@@ -37,7 +55,7 @@ public class PostControllerTest {
 	public void testShowDetail() throws Exception {
 
 		// given
-		Post post = new Post("Ceci est le titre du post", "Ceci est le contenu du post", "auteur", LocalDateTime.now(),
+		Post post = new Post("Ceci est le titre du post", "Ceci est le contenu du post", "auteur1", LocalDateTime.now(),
 				LocalDateTime.now());
 
 		// when

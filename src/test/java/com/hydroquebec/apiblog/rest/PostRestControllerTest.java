@@ -21,6 +21,7 @@ import static org.hamcrest.core.Is.is;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.hydroquebec.apiblog.entity.Comment;
 import com.hydroquebec.apiblog.entity.Post;
+import com.hydroquebec.apiblog.exception.CommentNotFoundException;
 import com.hydroquebec.apiblog.service.CommentService;
 import com.hydroquebec.apiblog.service.PostService;
 
@@ -58,6 +59,18 @@ public class PostRestControllerTest {
 				.andExpect(jsonPath("$[0].author", is(comment1.getAuthor())))
 				.andExpect(jsonPath("$[1].message", is(comment2.getMessage())))
 				.andExpect(jsonPath("$[1].author", is(comment2.getAuthor())));
+	}
+
+	@Test
+	public void whenGetCommentsForPost_thenThrowCommentNotFoundException() throws Exception {
+
+		// when
+		Mockito.doThrow(CommentNotFoundException.class).when(commentService)
+				.getAllCommentsForGivenPost(Mockito.anyInt());
+
+		// then
+		mockMvc.perform(get("/post/2/comments").contentType(MediaType.APPLICATION_JSON_UTF8))
+				.andExpect(status().isNotFound());
 	}
 
 	@Test
