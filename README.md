@@ -20,6 +20,7 @@ Mariadb 10.1
   
   ## Lancer l'application
   Pour exécuter l'application, il faut copier l'archive <b>/target/api-blog-1.0.jar</b> sur la machine hôte et le lancer avec la commande suivante:  <b>java -jar api-blog-1.0.jar</b>. Pour accéder à la page d'acceuil de l'application, il suffit de taper dans le navigateur l'adresse suivante:<b> http://server_ip:8080/api-blog/</b>, il faut remplacer server_ip par l'adresse de la machine hôte.
+  Notez que vous pouvez également télécharger une copie du projet sur votre machine et générer l'archive jar avec la commande: <b>./mvnw package <b> (lancez la commande depuis la racine du projet).
   
 # Utilisation de l'api
 Quatre formes de resources sont offertes à travers les URLs suivantes:
@@ -82,6 +83,8 @@ L'espace est accessible via l'URL de l'application :  <b> http://server_ip:8080/
 
 # Améliorations possibles
 Implémentation de la sécurité pour l'authentification et l'autorisation à l'aide de Spring Security
+
+Implémentation de la validation
 
 Implémentation du HATEOAS pour l'api
 
